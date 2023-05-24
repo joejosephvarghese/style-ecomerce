@@ -1,0 +1,192 @@
+<!-- <section class="content-main">
+    <div class="content-header">
+        <div>
+            <h2 class="content-title card-title">Products List</h2>
+            <p>Lorem ipsum dolor sit amet.</p>
+        </div>
+     
+    </div>
+   
+        </header> 
+        <% for(let i=0; i<data.length;i++){%>
+        <div class="card-body">
+            <article class="itemlist">
+                <div class="row align-items-center">
+                    <div class="col col-check flex-grow-0">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox">
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-4 col-8 flex-grow-1 col-name">
+                        <a class="itemside" href="#">
+                            <div class="left">
+                                <img src="<%= data[i].images.image1 %>" class="img-sm img-thumbnail" alt="Item">
+                            </div>
+                            <div class="info">
+                                <h6 class="mb-0"><%= data[i].name%></h6>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-lg-2 col-sm-2 col-4 col-price"> 
+                        <span><%= data[i].
+                            price%></span> </div>
+                    <div class="col-lg-2 col-sm-2 col-4 col-status">
+                        <span class="badge rounded-pill alert-success"><%= data[i].category%></span>
+                    </div>
+                    <div class="col-lg-1 col-sm-2 col-4 col-date">
+                        <span><%= data[i].
+                            description%></span>
+                    </div>
+                    <% if( locals.data[i].status === true) { %>
+                    <div class="col-lg-2 col-sm-2 col-4 col-action text-end">
+                        <a href="/admin/editproduct/<%= data[i]._id%>" class="btn btn-sm font-sm rounded btn-brand">
+                            <i class="material-icons md-edit"></i> Edit
+                        </a>
+                        <a href='/admin/deleteproduct/<%= data[i]._id%>' class="btn btn-sm font-sm btn-light rounded">
+                            <i class="material-icons md-delete_forever"></i> Unlist
+
+                            <% } else {%> 
+                                 <div class="col-lg-2 col-sm-2 col-4 col-action text-end">
+                             
+                                </a>
+
+                                <a href='/admin/listproduct/<%= data[i]._id%>' class="btn btn-sm font-sm btn-light rounded">
+                                    <i class="material-icons md-delete_forever"></i> List
+                            <%}%>
+                        </a>
+                    </div>
+                    
+                </div> 
+               
+            </article> 
+         
+        </div> 
+        <% } %>
+    </div>
+ 
+ 
+     <div class="pagination-area mt-30 mb-50">
+        <nav aria-label="Page navigation example">
+          <ul class="pagination justify-content-start">
+            <% for (let i = 1; i <= pages2; i++) { %>
+              <li class="page-item active">
+                <a class="page-link" href="/admin/productlist?page=<%= i %>"><%= i %></a>
+              </li>
+            <% } %>
+            <li class="page-item">
+              <a class="page-link" href="#">
+                <i class="material-icons md-chevron_right"></i>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      
+</section> -->
+<section class="content-main">
+  <div class="content-header">
+    <div>
+      <h2 class="content-title card-title">Products List</h2>
+      <p>Lorem ipsum dolor sit amet.</p>
+    </div>
+  </div>
+
+  <table class="table" id="uproductTable">
+    <thead>
+      <tr>
+
+        <th>image</th>
+
+        <th>Name</th>
+        <th>Price</th>
+        <th>Category</th>
+        <th>Description</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for (let i=0; i < data.length; i++) { %>
+        <tr>
+
+          <td>
+            <a class="itemside" href="#">
+              <div class="left">
+                <img src="<%= data[i].images.image1 %>" class="img-sm img-thumbnail" alt="Item">
+              </div>
+              <div class="info">
+          <td class="mb-0">
+            <%= data[i].name %>
+          </td>
+          </div>
+          </a>
+          </td>
+          <td><span>
+              <%= data[i].price %>
+            </span></td>
+          <td><span class="badge rounded-pill alert-success">
+              <%= data[i].category %>
+            </span></td>
+          <td><span>
+              <%= data[i].description %>
+            </span></td>
+          <td>
+            <% if (data[i].status===true) { %>
+              <a href="/admin/editproduct/<%= data[i]._id %>" class="btn btn-sm font-sm rounded btn-brand">
+                <i class="material-icons md-edit"></i> Edit
+              </a>
+              <a href="/admin/deleteproduct/<%= data[i]._id %>" class="btn btn-sm font-sm btn-light rounded">
+                <i class="material-icons md-delete_forever"></i> Unlist
+              </a>
+              <% } else { %>
+                <a href="/admin/listproduct/<%= data[i]._id %>" class="btn btn-sm font-sm btn-light rounded">
+                  <i class="material-icons md-delete_forever"></i> List
+                </a>
+                <% } %>
+          </td>
+        </tr>
+        <% } %>
+    </tbody>
+  </table>
+
+  <div class="pagination-area mt-30 mb-50">
+    <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-start">
+        <% for (let i=1; i <=pages2; i++) { %>
+          <li id="page-number-<%=i%>" class="page-item ">
+            <a class="page-link" href="/admin/productlist?page=<%= i %>">
+              <%= i %>
+            </a>
+          </li>
+          <% } %>
+            <li class="page-item">
+              <a class="page-link" href="#">
+                <i class="material-icons md-chevron_right"></i>
+              </a>
+            </li>
+      </ul>
+    </nav>
+  </div>
+</section>
+
+<script>
+  $(document).ready(function () {
+
+    $('#uproductTable').DataTable();
+
+    // Get the URL query parameters
+    var urlParams = new URLSearchParams(window.location.search);
+
+    // Get the value of the "page" parameter
+    var page = urlParams.get('page');
+
+    console.log('page-number-' + page); // Output: 1
+    var pageNumberElement = document.getElementById('page-number-' + page);
+    if (pageNumberElement) {
+      pageNumberElement.classList.add('active');
+    } else {
+      var pageNumberElement = document.getElementById('page-number-' + 1);
+      pageNumberElement.classList.add('active');
+    }
+  });
+
+</script>

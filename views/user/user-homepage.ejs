@@ -1,0 +1,272 @@
+<main class="main">
+    <section class="home-slider position-relative">
+        <div class="hero-slider-1 style-2 dot-style-1 dot-style-1-position-1">
+            <div class="single-hero-slider single-animation-wrap">
+                <div class="container">
+                    <div class="slider-1-height-2 slider-animated-1">
+                        <div class="hero-slider-content-2">
+                            <h5 class="animated"><%= banner[0].title%></h5>
+                            <h3 class="animated fw-900"><%= banner[0].description%></h3>
+                           
+                            <!-- <a class="animated btn btn-brush btn-brush-3" href="shop-product-right.html"> Shop
+                                Now </a> -->
+                        </div>
+                        <div class="single-slider-img single-slider-img-1">
+                            <img class="animated" src="<%= banner[0]?.images.image1%>" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="single-hero-slider single-animation-wrap">
+                <div class="container">
+                    <div class="slider-1-height-2 slider-animated-1">
+                        <div class="hero-slider-content-2">
+                            <h5 class="animated"><%= banner[0].title%></h5>
+                            <h3 class="animated fw-900"><%= banner[0].description%></h3>
+                          
+                            <a class="animated btn btn-brush btn-brush-1" href="shop-product-right.html"> Shop
+                                Now </a>
+                        </div>
+                        <div class="single-slider-img single-slider-img-1">
+                            <img class="animated" src="<%= banner[0]?.images.image2%>" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="single-hero-slider single-animation-wrap">
+                <div class="container">
+                    <div class="slider-1-height-2 slider-animated-1">
+                        <div class="hero-slider-content-2">
+                            <h5 class="animated"><%= banner[0].description%></h5>
+                            <h3 class="animated fw-900"><%= banner[0].title%></h3>
+                            
+                      
+                            <a class="animated btn btn-brush btn-brush-3" href="shop-product-right.html"> Shop
+                                Now </a>
+                        </div>
+                        <div class="single-slider-img single-slider-img-1">
+                            <img class="animated" src="<%= banner[0]?.images.image3%>" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slider-arrow hero-slider-1-arrow"></div>
+
+    </section>
+    <section class="product-tabs pt-25 pb-20 wow fadeIn animated">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="widget-category mb-30">
+                        <h5 class="section-title style-1 mb-30 wow fadeIn animated">Category</h5>
+                        <ul class="categories">
+                            <% for(let i=0; i<categories.length;i++){%>
+                                <li><a href="/catagoryfilter/<%= categories[i].name%>">
+                                        <%= categories[i].name%>
+                                    </a></li>
+                                <%}%>
+
+                        </ul>
+                    </div>
+                  
+                  
+                </div> 
+             
+                <div class="col-lg-9">
+                   
+                    <!-- <div class="tab-header">
+                        <% for(let i=0; i<categories.length;i++){%>
+                            
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button  onclick="" class="nav-link active" id="nav-tab-one" data-bs-toggle="tab"
+                                    data-bs-target="#tab-one" type="button" role="tab" aria-controls="tab-one"
+                                    aria-selected="true">  <%= categories[i].name%></button>
+                               
+                            </li>
+                            <%}%>    
+                      
+                        </ul>
+                        <a href="#" class="view-more d-none d-md-flex">View More<i
+                                class="fi-rs-angle-double-small-right"></i></a>
+                    </div> -->
+                    <!--End nav-tabs-->
+                    <div class="tab-content wow fadeIn animated" id="myTabContent">
+                        <div class="tab-pane fade show active" id="tab-one" role="tabpanel" aria-labelledby="tab-one">
+                            <div class="row product-grid-4">
+
+
+                                <% if(locals.data && locals.data.length ) { %>
+                                    <% for(let i=0;i<locals.data.length;i++){ %>
+                                        <% if( locals.data[i].status===true) { %>
+
+                                            <div class="col-lg-4 col-md-4 col-12 col-sm-6">
+                                                <div class="product-cart-wrap mb-30">
+                                                    <div class="product-img-action-wrap">
+                                                        <div class="product-img product-img-zoom">
+                                                            <a href='/shopproduct/<%= data[i]._id%>'>
+                                                                <img class="default-img"
+                                                                    src="<%= data[i].images.image1 %>" alt="">
+                                                                <img class="hover-img"
+                                                                    src="<%= data[i].images.image2 %>" alt="">
+                                                            </a>
+                                                        </div>
+                                                        <div class="product-action-1">
+                                                     
+                                                            <a aria-label="Add To Wishlist" class="action-btn hover-up"
+                                                                href="#" onclick="addToWishList('<%=data[i]._id%>')"><i
+                                                                    class="fi-rs-heart"></i></a>
+                                               
+                                                        </div>
+                                                        <div
+                                                            class="product-badges product-badges-position product-badges-mrg">
+                                                            <span class="hot">Hot</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product-content-wrap">
+                                                        <div class="product-category">
+                                                            <a href="shop-grid-right.html">
+                                                                <%= data[i].description%>
+                                                            </a>
+                                                        </div>
+                                                        <h2><a href="shop-product-right.html">
+                                                                <%= data[i].name%>
+                                                            </a>
+                                                        </h2>
+                                                        <div class="rating-result" title="90%">
+                                                            <span>
+                                                                <span>
+                                                                    <%= data[i].category%>
+                                                                </span>
+                                                            </span>
+                                                        </div>
+                                                        <div class="product-price">
+                                                            <span>
+                                                                <%= data[i].price%>
+                                                            </span>
+                                                            <span class="old-price">245.8</span>
+                                                        </div>
+
+
+                                                        <div class="product-action-1 show">
+                                                            <div class="product-action-1 show">
+                                                                <button aria-label="Add To Cart"
+                                                                    class="action-btn hover-up" type="button"
+                                                                    onclick="addtocart('<%=data[i]._id%>')" href=""><i
+                                                                        class="fi-rs-shopping-bag-add"></i></button>
+
+
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <% } %>
+                                                <% } %>
+
+                                                    <% }else{ %>
+                                                        <h1>No Products Avaiable</h1>
+                                                        <% } %>
+
+
+
+
+
+                                                        <div class="pagination-area mt-30 mb-50">
+                                                            <nav aria-label="Page navigation example">
+                                                                <ul class="pagination justify-content-start">
+                                                                    <% for(let i=1;i<=pages2;i++){%>
+                                                                    <li class="page-item active"><a class="page-link" href="/?page=<%=i%>"><%= i%></a></li>
+                                                                    <%}%>
+                                                                    <li class="page-item"><a class="page-link" href="#"><i class="material-icons md-chevron_right"></i></a></li>
+                                                                </ul>
+                                                            </nav>
+                                                        </div>
+
+
+
+
+
+
+
+               
+</main>
+
+
+<script>
+
+    function addtocart(ID) {
+        console.log(ID)
+        $.ajax({
+            url: `/addtocart/` + ID,
+            method: "GET",
+            success: (response) => {
+                if(response.outofstock){
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Out of stock',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }else{
+                response.login
+                    ? Swal.fire({
+                        icon: 'success',
+                        title: 'Item added successfully',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                    : location.href = '/login'
+            }
+        }
+        }
+        )
+    }
+</script>
+
+<script>
+    function addToWishList(proId) {
+      $.ajax({
+        url: '/add-to-wishlist',
+        method: 'POST',
+        data: {
+          proId: proId
+        },
+        success: (response) => {
+          if (response.status) {
+            // Product added to Wishlist successfully
+            Swal.fire({
+              icon: 'success',
+              title: 'Product added to Wishlist!',
+              showConfirmButton: false,
+              timer: 3000
+            });
+          } else {
+            // Error adding product to Wishlist
+            Swal.fire({
+              icon: 'error',
+              title: 'Error',
+              text: 'There was an error adding the product to your wishlist. Please try again later.',
+              timer: 3000
+            });
+          }
+        },
+        fail: (error) => {
+          // Handle any errors that occur during the AJAX call
+          Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'There was an error communicating with the server. Please try again later.',
+            timer: 9000
+          });
+        }
+      });
+    }
+  </script>
+  
+
+<script>
+
+

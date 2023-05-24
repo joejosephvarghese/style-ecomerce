@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+
+<!-- Mirrored from wp.alithemes.com/html/evara/evara-frontend/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 01 Aug 2021 15:20:36 GMT -->
+<head>
+    <meta charset="utf-8">
+    <title>Evara - eCommerce HTML Template</title>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title" content="">
+    <meta property="og:type" content="">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+    <!-- Favicon -->
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="shortcut icon" type="image/x-icon" href="/assets/imgs/theme/favicon.svg">
+    <!-- Template CSS -->
+      <!-- <script  src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
+    <!-- <script  src="https://raw.githubusercontent.com/jaredhanson/connect-flash/master/lib/connect-flash.js"></script> -->
+    <script   src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script defer  src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script defer  src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script defer  src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <!-- <script defer  type="text/css" src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></script> -->
+
+    
+</head>
+
+<body>
+
+
+
+  
+
+    <% if(locals.login) { %> <!-- If the user is an login -->
+        <!-- Include four partials -->
+        <!-- <%- include('partials/user-top') %> -->
+        <%- include('user/user-loginpage') %>
+               
+    <% } else if(locals.signup) { %> <!-- If the user is signup -->
+        <!-- Include two partials -->
+        <!-- <%- include('partials/user-top') %> -->
+        <%- include('user/signup') %>
+    
+    <% } else if(locals.logout) { %>
+        <%- include('partials/user-top') %>
+        <%- include('user/user-homepage') %>
+       
+    
+    <% } else  { %> <!-- If the user is logged in -->
+        <!-- Include three partials -->
+        <%- include('partials/userheader') %>
+        <%- body %>
+        <%- include('partials/userfooter') %>
+    <% } %>
+
+
+    <script src="/assets/js/vendor/modernizr-3.6.0.min.js"></script>
+    <!-- Vendor JS-->
+    <script src="/assets/js/vendor/jquery-3.6.0.min.js"></script>
+    <script src="/assets/js/vendor/bootstrap.bundle.min.js"></script>
+    <script src="/assets/js/vendor/jquery-migrate-3.3.0.min.js"></script>
+    <script src="/assets/js/plugins/slick.js"></script>
+    <script src="/assets/js/plugins/jquery.syotimer.min.js"></script>
+    <script src="/assets/js/plugins/wow.js"></script>
+    <script src="/assets/js/plugins/jquery-ui.js"></script>
+    <script src="/assets/js/plugins/perfect-scrollbar.js"></script>
+    <script src="/assets/js/plugins/magnific-popup.js"></script>
+    <script src="/assets/js/plugins/select2.min.js"></script>
+    <script src="/assets/js/plugins/waypoints.js"></script>
+    <script src="/assets/js/plugins/counterup.js"></script>
+    <script src="/assets/js/plugins/jquery.countdown.min.js"></script>
+    <script src="/assets/js/plugins/images-loaded.js"></script>
+    <script src="/assets/js/plugins/isotope.js"></script>
+    <script src="/assets/js/plugins/scrollup.js"></script>
+    <script src="/assets/js/plugins/jquery.vticker-min.js"></script>
+    <script src="/assets/js/plugins/jquery.theia.sticky.js"></script>
+    <script src="/assets/js/plugins/jquery.elevatezoom.js"></script>
+  
+
+    
+    <!-- Template  JS -->
+    <script src="/assets/js/main.js"></script>
+    <script src="/assets/js/shop.js"></script>
+   
+
+   
+</body>
+
+
+<!-- Mirrored from wp.alithemes.com/html/evara/evara-frontend/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 01 Aug 2021 15:25:49 GMT -->
+</html>

@@ -1,0 +1,185 @@
+<section class="content-main">
+    <div class="content-header">
+        <div>
+            <h2 class="content-title card-title">Categories </h2>
+            <p>Add, edit or delete a category</p>
+        </div>
+        <div>
+            
+            <input type="text" placeholder="Search Categories" class="form-control bg-white">
+        </div>
+    </div>
+    <div class="card">
+        
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-3">
+                    <form id="addcata-form" >
+                        <div class="mb-4">
+                            <label for="product_name" class="form-label">Catagory</label>
+                            <input oninput="this.value = this.value.toUpperCase()" style="text-transform:uppercase;width:fit-content;"    name="name" type="text" required="" placeholder="Type here" class="form-control"
+                                id="product_name" />
+                                 
+                        </div>
+                 
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">Create category</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-9">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+
+                                <tr>
+                                    <th class="text-center">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" />
+                                        </div>
+                                    </th>
+                                 
+                                    <th>Catagory</th>
+                                    <th>Action</th>
+                               
+                            </thead>
+                            <% for(let i=0; i<datas.length;i++){%>
+
+
+                                <tbody>
+
+                                    <tr>
+
+
+                                        <td class="text-center">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="" />
+                                            </div>
+                                        </td>
+
+
+                                        <!-- <td style="color:red;"><%= datas[i]._id%></td> -->
+
+                                        <td><b>
+                                                <%= datas[i].name%>
+                                            </b></td>
+                                        <!-- <td><%= datas[i].child%></td> -->
+
+                                        <!-- <td><%= datas[i].Description%></td> -->
+                                        <!-- <td>1</td> -->
+
+                                        <td>
+
+                                            <div class="dropdown">
+
+
+                                                <a href="#" data-bs-toggle="dropdown"
+                                                    class="btn btn-light rounded btn-sm font-sm">
+
+                                                    <i class="material-icons md-more_horiz"></i> </a>
+
+                                                <div class="dropdown-menu">
+
+                                                    <% if( locals.datas[i].status===true) { %>
+                                                        <a class="dropdown-item" href="#">View detail</a>
+                                                        <a class="dropdown-item"
+                                                            href="/admin/editcatagory/<%=datas[i]._id%>">Edit info</a>
+                                                        <a class="dropdown-item text-danger"
+                                                            href="/admin/deletecatagory/<%= datas[i]._id%>">Unlist</a>
+                                                        <% } else {%>
+                                                            <a class="dropdown-item text-danger"
+                                                                href="/admin/listcatagory/<%= datas[i]._id%>">List
+                                                                Catagory</a>
+                                                            <%}%>
+                                                </div>
+                                            </div>
+                                        </td>
+
+                                        <% } %>
+                                    </tr>
+          
+
+                                    </td>
+                                    </tr>
+                                </tbody>
+                        </table>
+                    </div>
+                </div> 
+            </div> 
+        </div>
+    </div>
+</section>
+
+
+<script>
+
+
+// function addcata() {
+
+
+// $.ajax({
+//   url: '/admin/addcategory/',
+//   method: 'POST',
+//   data: $('#addcata-form').serialize(),
+//   success: (response) => {
+//     console.log(response);
+
+//     if (response.status) {
+//         Swal.fire({
+//         title: 'category added!',
+//         text: 'Your adress has been updated successfully.',
+//         icon: 'success',
+//         timer: 5000
+//       }).then(() => {
+//         location.reload
+//       })
+//     } else {
+//     }
+//   },
+//   error:(error)=>{
+//     console.log(error);
+//   }
+// })
+// }
+$('#addcata-form').submit((e)=>{
+    e.preventDefault()
+    $.ajax({
+    url: '/admin/addcategory/',
+    method: 'POST',
+    data: $('#addcata-form').serialize(),
+    success: (response) => {
+      console.log(response);
+
+      if (response.status) {
+       
+        Swal.fire({
+          title: 'Category added!',
+          text: 'Your category has been added successfully.',
+          icon: 'success',
+          timer: 5000
+        }).then(() => {
+          console.log('reloading page'); // check that the code reaches this point
+          location.reload();
+        });
+      } else {
+        Swal.fire({
+                  icon: 'error',
+               title: 'Oops...',
+             text: 'Category already exsit!',
+               footer: '<a href="">Why do I have this issue?</a>'
+})
+      }
+    },
+    error: (error) => {
+      console.log(error);
+    }
+  });
+
+})
+function addcata() {
+ 
+}
+
+
+</script>
+   

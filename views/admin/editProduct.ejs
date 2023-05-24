@@ -1,0 +1,92 @@
+<form action="/admin/editproduct/<%= product._id%>" method="post">
+<section class="content-main">
+    <div class="row">
+        <div class="col-6">
+            <div class="content-header">
+                <h2 class="content-title">Edit  Product</h2>
+                <div>
+                    <!-- <button class="btn btn-light rounded font-sm mr-5 text-body hover-up">Save to draft</button> -->
+                    <button  type="submit"           class="btn btn-md rounded font-sm hover-up">Publich</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            
+                            <h6>1. General info</h6>
+                        </div>
+
+                        <div class="col-md-9">
+                            <div class="mb-4">
+                                
+                                <label class="form-label">Product title</label>
+                                <input type="text" name="name" placeholder="Type here" value=" <%= product.name%>" class="form-control">
+                            </div>
+                           
+                            <div class="mb-4">
+                                <label class="form-label">Description</label>
+                                <textarea value=" "   name="description" placeholder="Type here" class="form-control" rows="4"><%= product.description%></textarea>
+                            </div>
+                            <div class="mb-4">
+                                <label class="form-label">category</label>
+                                <select class="form-select" name="category">
+                                    <% for(let i=0; i<categories.length;i++){%>
+                                        <% if (locals.categories[i].name === product.category) { %>
+                                            <option selected><%= locals.categories[i].name %></option>
+                                        <% }else {%>
+                                        <option>
+                                            <%= categories[i].name%>
+                                        </option>
+                                        <% } %>
+                                        <% } %>
+                                       
+                                </select>
+                            </div>
+                        </div> <!-- col.// -->
+                    </div> <!-- row.// -->
+             
+                    <hr class="mb-4 mt-0">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <h6>2. Pricing</h6>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="mb-4">
+                                <label class="form-label">Cost in USD</label>
+                                <input name="cost" type="text" placeholder="$00.0" value=" <%= product.price%>"class="form-control">
+                            </div>
+                        
+                        </div> <!-- col.// -->
+                    </div>
+                     <!-- row.// -->
+                    
+                    <hr class="mb-4 mt-0">
+                     
+                    <hr class="mb-4 mt-0">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <h6>4. Media</h6>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="mb-4">
+                                <label class="form-label">Images</label>
+                                <input class="form-control" type="file">
+                            </div>
+                        </div> <!-- col.// -->
+                    </div> 
+                   
+                    <!-- .row end// -->
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+   
+</section>
+</form>

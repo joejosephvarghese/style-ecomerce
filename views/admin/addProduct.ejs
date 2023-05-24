@@ -1,0 +1,100 @@
+<form action="/admin/addproduct" method="post" enctype="multipart/form-data" >
+    <section class="content-main">
+        <div class="row">
+            <div class="col-6">
+                <div class="content-header">
+                    <h2 class="content-title">Add New Product</h2>
+                    <div>
+                        <!-- <button class="btn btn-light rounded font-sm mr-5 text-body hover-up">Save to draft</button> -->
+                        <button type="submit" class="btn btn-md rounded font-sm hover-up">Publish</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h6>1. General info</h6>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="mb-4">
+                                    <label class="form-label">Product title</label>
+                                    <input type="text" name="name" placeholder="Type here" class="form-control">
+                                </div>
+                                <!-- <div class="mb-4">
+                                <label class="form-label">Description</label>
+                                <textarea placeholder="Type here" class="form-control" rows="4"></textarea>
+                            </div> -->
+
+                                <label class="form-label">Description</label>
+
+
+                                <input class="form-select" name="description" placeholder="Type here"
+                                    class="form-control" type="text">
+
+
+                                <div class="mb-4">
+
+                                    <label class="form-label">Catagory</label>
+
+                                    <select class="form-select" name="category">
+                                        <% for(let i=0; i<categories.length;i++){%>
+
+                                            <option>
+                                                <%= categories[i].name%>
+                                            </option>
+                                            <% } %>
+                                    </select>
+
+                                </div>
+
+
+                            </div> <!-- col.// -->
+                        </div> <!-- row.// -->
+                        <hr class="mb-4 mt-0">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h6>2. Pricing</h6>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="mb-4">
+                                    <label class="form-label">Cost in USD</label>
+                                    <input type="text" name="price" placeholder="$00.0" class="form-control">
+                                </div>
+                            </div> <!-- col.// -->
+                        </div> 
+                        <!-- row.// -->
+                        <hr class="mb-4 mt-0">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h6>2. Stock</h6>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="mb-4">
+                             
+                                    <input type="text" name="stock" placeholder="stock.." class="form-control">
+                                </div>
+                            </div> <!-- col.// -->
+                        </div>
+                        <hr class="mb-4 mt-0">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h6>4. Media</h6>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="mb-4">
+                                    <label class="form-label">Images</label>
+                                    <input class="form-control" type="file" value="upload" multiple name="Image" >
+                                </div>
+                            </div> <!-- col.// -->
+                        </div> <!-- .row end// -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+</form>

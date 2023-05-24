@@ -1,0 +1,109 @@
+<main class="main">
+
+    <section class="mt-50 mb-50">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="table-responsive">
+              <table class="table shopping-summery text-center">
+                <thead>
+                  <tr class="main-heading">
+                    <th scope="col" colspan="2">Product</th>
+                    <th scope="col">Price</th>
+                    <!-- <th scope="col">Stock Status</th> -->
+                    <th scope="col">Action</th>
+                    <th scope="col">Remove</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <% if(locals.wishlistProducts?.length!==0) {%>
+                        <% wishlistProducts.forEach(function(item) { %>
+                          <tr>
+                            <td class="image product-thumbnail"><img src="<%=item.wishListed.images.image1%>" alt="#"></td>
+                            <td class="product-des product-name">
+                              <h5 class="product-name"><a href="shop-product-right.html"><%=item.wishListed.name%></a></h5>
+                              <p class="font-xs"><%=item.wishListed.description%></p>
+                            </td>
+                            <td class="price" data-title="Price"><span>₹<%=item.wishListed.price%></span></td>
+                            <td class="text-right" data-title="Cart"> <button class="btn btn-sm cool-button" onclick="addToCart('<%=item.productId%>')">
+                                <i class="fi-rs-shopping-bag mr-2"></i>
+                              </button></td>
+                              <td class="action" data-title="Remove" onclick="removeFromWishList('<%=item.productId%>','<%=item._id%>')"><a href="#"><i class="fi-rs-trash"></i></a></td>
+                          </tr>
+                        
+                          <% }); %>
+                          <% } %>
+                 
+                 
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+  <script>
+    // add to cart ajax call
+    function addToCart(proId) {
+      $.ajax({
+        url:'/addtocart/'+ proId,
+        method: 'GET',
+        data: {
+          proId: proId
+        },
+        success: (response) => {
+      if (response.login) {
+        swal.fire({
+          title: 'Success',
+          text: 'Item added to cart successfully',
+          icon: 'success',
+          confirmButtonText: 'OK'
+        }).then(() => {
+          location.reload()
+        })
+      } else {
+        swal.fire({
+          title: 'out of stock',
+          text: response.message,
+          icon: 'error',
+          confirmButtonText: 'OK'
+        })
+      }
+    },
+    error: (err) => {
+      swal.fire({
+        title: 'Error',
+        text: 'Internal server error',
+        icon: 'error',
+        confirmButtonText: 'OK'
+      })
+    }
+  })
+}
+    // remove from wishList ajax call
+    function removeFromWishList(proId, wishListId) {
+      $.ajax({
+        url: '/remove-product-wishlist',
+        method: 'DELETE',
+        data: {
+          proId: proId,
+          wishListId: wishListId
+        },
+        success: (response) => {
+          Swal.fire({
+            icon: 'success',
+            title: 'Product removed from wishlist',
+            showConfirmButton: false,
+            timer: 3000
+          }).then(() => {
+            location.reload()
+          })
+        }
+      })
+    }
+  </script>
+  
+  

@@ -1,0 +1,79 @@
+
+
+
+
+<section class="content-main">
+  <div class="content-header">
+      <h2 class="content-title">Users list</h2>
+      <!-- <div>
+          <a href="#" class="btn btn-primary"><i class="material-icons md-plus"></i> Create new</a>
+      </div> -->
+  </div>
+  <div class="card mb-4">
+      <div class="card-body">
+          <div class="table-responsive">
+              <table class="table table-hover">
+                  <thead>
+                      <tr>
+                          <th>User</th>
+                          <th>Email</th>
+                          <th>Status</th>
+                          <th>Registered</th>
+                          <th class="text-end">Action</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <% for(let i=data.length-1; i>=0; i--) { %>
+                          <tr>
+                              <td width="40%">
+                                  <a href="#" class="itemside">
+                                      <div class="left">
+                                          <img src="/assets copy/imgs/people/avatar1.jpg" class="img-sm img-avatar" alt="Userpic">
+                                      </div>
+                                      <div class="info pl-3">
+                                          <h6 class="mb-0 title"><%= data[i].firstName%></h6>
+                                          <small class="text-muted"><%= data[i]._id%></small>
+                                      </div>
+                                  </a>
+                              </td>
+                              <td>
+                                  <template class="__cf_email__" data-cfemail="2c4940494d42435e1e1c1e1c6c49544d415c4049024f4341">[email&#160;protected]</template><%=data[i].email%>
+                              </td>
+                              <td>
+                                  <span class="badge rounded-pill alert-success">Active</span>
+                              </td>
+                              <td>08.07.2020</td>
+                              <td class="text-end">
+                                  <% if(locals.data[i].status === true) { %>
+                                      <a href="/admin/blockuser/<%= data[i]._id%>" class="btn btn-sm btn-brand rounded font-sm mt-15">Block</a>
+                                  <% } else { %>
+                                      <a href="/admin/unblockuser/<%= data[i]._id%>" class="btn btn-sm btn-brand rounded font-sm mt-15">Unblock</a>
+                                  <% } %>
+                                  <a href="/admin/order-list/<%= data[i]._id%>" class="btn btn-sm btn-brand rounded font-sm mt-15">Orders</a>
+                              </td>
+                          </tr>
+                      <% } %>
+                  </tbody>
+              </table> <!-- table-responsive.// -->
+          </div>
+      </div> <!-- card-body end// -->
+  </div> <!-- card end// -->
+  <div class="pagination-area mt-15 mb-50">
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-start">
+            <% for(let i=1; i<=pages2; i++) { %>
+                <li class="page-item active">
+                    <a class="page-link" href="/admin/userlist?page=<%=i%>"><%=i%></a>
+                </li>
+            <% } %>
+            <li class="page-item">
+                <a class="page-link" href="#"><i class="material-icons md-chevron_right"></i></a>
+            </li>
+        </ul>
+    </nav>
+</div>
+</section>
+
+
+
+<!-- content-main end// -->

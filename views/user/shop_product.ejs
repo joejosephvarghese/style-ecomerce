@@ -1,0 +1,182 @@
+ <section class="mt-50 mb-50">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9">
+                <div class="product-detail accordion-detail">
+                    <div class="row mb-50">
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="detail-gallery">
+                                <span class="zoom-icon"><i class="fi-rs-search"></i></span>
+                                <!-- MAIN SLIDES -->
+<div class="product-image-slider">
+    <figure class="border-radius-10">
+        <img src="<%=locals.product.images.image1%>" alt="product image">
+    </figure>
+    <figure class="border-radius-10">
+        <img src="<%=locals.product.images.image2%>" alt="product image">
+    </figure>
+    <figure class="border-radius-10">
+        <img src="<%=locals.product.images.image3%>" alt="product image">
+    </figure>
+
+    </figure>
+</div>
+<!-- THUMBNAILS -->
+<div class="slider-nav-thumbnails pl-15 pr-15">
+    <div><img src="<%=locals.product.images.image1%>" alt="product image"></div>
+    <div><img src="<%=locals.product.images.image2%>" alt="product image"></div>
+
+</div>
+</div>
+<!-- End Gallery -->
+<div class="social-icons single-share">
+
+</div>
+</div>
+
+<div class="col-md-6 col-sm-12 col-xs-12">
+    <div class="detail-info">
+        <h2 class="title-detail">
+            <%=locals.product.name%>
+        </h2>
+        <div class="product-detail-rating">
+            <div class="pro-details-brand">
+                <span> Brands: <a href="shop-grid-right.html">
+                        <%=locals.product.category%>
+                    </a></span>
+            </div>
+            <div class="product-rate-cover text-end">
+                <div class="product-rate d-inline-block">
+                    <div class="product-rating" style="width:90%">
+                    </div>
+                </div>
+                <!-- <span class="font-small ml-5 text-muted"> (25 reviews)</span> -->
+            </div>
+        </div>
+        <div class="clearfix product-price-cover">
+            <div class="product-price primary-color float-left">
+                <ins><span class="text-brand">
+                        <%=locals.product.price%>
+                    </span></ins>
+                <ins><span class="old-price font-md ml-15">200.00</span></ins>
+                >
+            </div>
+        </div>
+        <div class="bt-1 border-color-1 mt-15 mb-15"></div>
+        <div class="short-desc mb-30">
+            <p>
+                <%=locals.product.description%>
+            </p>
+        </div>
+        <div class="product_sort_info font-xs mb-30">
+            <ul>
+                <li class="mb-10"><i class="fi-rs-crown mr-5"></i> 1 Year AL Jazeera Brand Warranty</li>
+                <li class="mb-10"><i class="fi-rs-refresh mr-5"></i> 30 Day Return Policy</li>
+                <li><i class="fi-rs-credit-card mr-5"></i> Cash on Delivery available</li>
+            </ul>
+        </div>
+        <div class="attr-detail attr-color mb-15">
+
+        </div>
+
+        <div class="bt-1 border-color-1 mt-30 mb-30"></div>
+
+    </div>
+    <div class="product-extra-link2">
+
+        <a aria-label="Add To Cart" class="action-btn hover-up" href="#"
+            onclick="addtocart('<%=locals.product._id%>')"><i class="fi-rs-shopping-bag-add"></i></a>
+        <a aria-label="Add To Wishlist" class="action-btn hover-up" href="#"
+            onclick="addToWishList('<%=locals.product._id%>')"><i class="fi-rs-heart"></i></a>
+        <!-- <a aria-label="Compare" class="action-btn hover-up" href="shop-compare.html"><i class="fi-rs-shuffle"></i></a> -->
+    </div>
+</div>
+
+</div>
+
+<!-- Detail Info -->
+</div>
+</div>
+<div class="tab-style3">
+
+</div>
+</div>
+
+</div>
+
+</section>
+
+
+<script>
+
+    function addtocart(ID) {
+        console.log(ID)
+        $.ajax({
+            url: `/addtocart/` + ID,
+            method: "GET",
+            success: (response) => {
+                if (response.outofstock) {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Out of stock',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                } else {
+                    response.login
+                        ? Swal.fire({
+                            icon: 'success',
+                            title: 'Item added successfully',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                        : location.href = '/login'
+                }
+            }
+        }
+        )
+    }
+
+
+</script>
+
+
+<script>
+    function addToWishList(proId) {
+        $.ajax({
+            url: '/add-to-wishlist',
+            method: 'POST',
+            data: {
+                proId: proId
+            },
+            success: (response) => {
+                if (response.status) {
+                    // Product added to Wishlist successfully
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Product added to Wishlist!',
+                        showConfirmButton: false,
+                        timer: 3000
+                    });
+                } else {
+                    // Error adding product to Wishlist
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'There was an error adding the product to your wishlist. Please try again later.',
+                        timer: 3000
+                    });
+                }
+            },
+            fail: (error) => {
+                // Handle any errors that occur during the AJAX call
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'There was an error communicating with the server. Please try again later.',
+                    timer: 9000
+                });
+            }
+        });
+    }
+</script>
