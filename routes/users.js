@@ -45,7 +45,7 @@ router
  //add to cart
  router
  .route('/addtocart/:id')
- .get(usercontrol.addtocart)
+ .get(Session.ifusercheck,usercontrol.addtocart)
 
 
  //cart page

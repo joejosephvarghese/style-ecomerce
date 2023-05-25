@@ -17,12 +17,8 @@ const Banner = require("../model/Bannermodel");
 module.exports = {
   userHome: async (req, res) => {
     const user = req.session.user;
-    if (!user || !user._id) {
-      return res.redirect("/login");
-    }
-
-    const userId = user._id;
-    const pagenum = req.query.page;
+    const userId = user?._id;
+    const pagenum = req.query?.page;
     const currentPage = pagenum;
     const perPage = 6;
     const count = await userhelper.getcartcount(userId);
@@ -43,6 +39,36 @@ module.exports = {
       banner,
       wishlistCount,
     });
+    // if(user){
+    //     // if (!user || !user._id) {
+    // //   return res.redirect("/login");
+    // // }
+    // const userId = user._id;
+    // const pagenum = req.query.page;
+    // const currentPage = pagenum;
+    // const perPage = 6;
+    // const count = await userhelper.getcartcount(userId);
+    // const wishlistCount = await wishListHelpers.getWishListCount(userId);
+    // const documentCount = await userhelper.DocumentCount();
+    // let pages2 = Math.ceil(parseInt(documentCount) / perPage);
+    // const data = await productHelper.findall(pagenum, perPage);
+    // const categories = await Category.find().lean().exec();
+    // const banner = await Banner.find().lean().exec();
+    // console.log(banner, "ol");
+
+    // res.render("user/user-homepage", {
+    //   user,
+    //   data,
+    //   categories,
+    //   pages2,
+    //   count,
+    //   banner,
+    //   wishlistCount,
+    // });
+    // } else {
+    //   res.redirect('/login')
+    // } 
+  
   },
 
   getLoginPage: (req, res) => {

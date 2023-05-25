@@ -193,10 +193,17 @@
                     <div class="header-action-right">
                         <div class="header-action-2">
                             <div class="header-action-icon-2">
-                                <a href="/wish-list">
-                                    <img class="svgInject" alt="Evara" src="/assets/imgs/theme/icons/icon-heart.svg">
-                                    <span class="pro-count blue"><%=wishlistCount%></span>
-                                </a>
+                                <% if (wishlistCount){%>
+                                    <a href="/wish-list">
+                                        <img class="svgInject" alt="Evara" src="/assets/imgs/theme/icons/icon-heart.svg">
+                                        <span class="pro-count blue"><%=wishlistCount%></span>
+                                    </a>
+                                <% }else{ %>
+                                    <a href="/wish-list">
+                                        <img class="svgInject" alt="Evara" src="/assets/imgs/theme/icons/icon-heart.svg">
+                                    </a>
+                                    <% } %>
+                              
                             </div>
 
 
@@ -207,15 +214,19 @@
                             </a>
 
                             <div class="header-action-icon-2">
-                                <% if(locals.user){ %>
-                                    <a class="mini-cart-icon" href='/cartpage'>
-                                        <img alt="Evara" src="/assets/imgs/theme/icons/icon-cart.svg">
-                                        <span class="pro-count blue">
-                                            <%=count%>
-                                        </span>
-                                    </a>
-                                    <%}%>
-
+                                    <% if (count){%>
+                                        <a class="mini-cart-icon" href='/cartpage'>
+                                            <img alt="Evara" src="/assets/imgs/theme/icons/icon-cart.svg">
+                                            <span class="pro-count blue">
+                                                <%=count%>
+                                            </span>
+                                        </a>
+                                    <% }else{ %>
+                                        <a class="mini-cart-icon" href='/cartpage'>
+                                            <img alt="Evara" src="/assets/imgs/theme/icons/icon-cart.svg">
+                                        </a>
+                                        <% } %>
+                                  
 
 
                           
