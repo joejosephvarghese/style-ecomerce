@@ -9,6 +9,7 @@ const orderHelpers = require("../helpers/orderhelper");
 const Coupon = require("../model/coupenmodel");
 const { response } = require("express");
 const objectId = require("mongodb").ObjectId;
+const wishListHelpers = require("../helpers/wishlisthelper");
 
 module.exports = {
   getAddress: async (req, res) => {
@@ -16,11 +17,17 @@ module.exports = {
     let user = req.session.user;
     if (user) {
       const count = await userhelper.getcartcount(user._id);
-
+      const wishlistCount = await wishListHelpers.getWishListCount(user._id);
       let Address = await orderHelpers.getAddress(user._id);
       let orders = await orderHelpers.getOrders(user._id);
 
-      res.render("../views/user/myaccount", { Address, count, orders, user });
+      res.render("../views/user/myaccount", {
+        Address,
+        count,
+        orders,
+        user,
+        wishlistCount,
+      });
     }
   },
 
@@ -44,6 +51,7 @@ module.exports = {
     var count = null;
     let user = req.session.user;
     if (user) {
+      const wishlistCount = await wishListHelpers.getWishListCount(user._id);
       const coupons = await Coupon.find({ status: true });
       var count = await userhelper.getCartCount(user._id);
       let Address = await orderHelpers.getAddress(user._id);
@@ -59,6 +67,7 @@ module.exports = {
         total,
         orders,
         coupons,
+        wishlistCount,
       });
     }
   },
@@ -131,6 +140,7 @@ module.exports = {
 
     let userId = req.session.user._id;
     let orderId = req.params.id;
+    const wishlistCount = await wishListHelpers.getWishListCount(userId);
     const count = await userhelper.getcartcount(userId);
     orderHelpers.getSubOrders(orderId, userId).then((orderDetails) => {
       orderHelpers.findOrder(orderId, userId).then((productorder) => {
@@ -142,6 +152,7 @@ module.exports = {
           products,
           orderDetails,
           count,
+          wishlistCount,
         });
       });
     });
