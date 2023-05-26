@@ -28,7 +28,7 @@ module.exports = {
     const data = await productHelper.findall(pagenum, perPage);
     const categories = await Category.find().lean().exec();
     const banner = await Banner.find().lean().exec();
-    console.log(banner, "ol");
+   
 
     res.render("user/user-homepage", {
       user,
