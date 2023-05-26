@@ -39,7 +39,7 @@
                                     </div>
                                 </td>
                                 <td class="text-right" data-title="Cart">
-                                    <span id="subTotal-<%= cartdetails[i].item._id %>"><%= cartdetails[i].subtotal%></span>
+                                    <span id="subTotal-<%= cartdetails[i].item._id %>">₹<%= cartdetails[i].subtotal%></span>
                                 </td>
                                 <td class="action" data-title="Remove">
                                     <button href="" class="text-muted" onclick="deleteProduct ('<%=cartdetails[i]._id %>','<%=cartdetails[i].item._id%>')">
@@ -80,7 +80,7 @@
                                     <tbody>
                                         <tr>
                                             <td class="cart_total_label">Cart Subtotal</td>
-                                            <td class="cart_total_amount"><span class="font-lg fw-900 text-brand"><%= cartdetails.subtotal %></span></td>
+                                            <td class="cart_total_amount"><span class="font-lg fw-900 text-brand">₹<%= cartdetails.subtotal %></span></td>
                                         </tr>
                                         <tr>
                                             <td class="cart_total_label">Shipping</td>
@@ -88,7 +88,7 @@
                                         </tr>
                                         <tr>
                                             <td class="cart_total_label">Total</td>
-                                            <td class="cart_total_amount"><strong><span id="total" class="font-xl fw-900 text-brand"><%=total%></span></strong></td>
+                                            <td class="cart_total_amount"><strong><span id="total" class="font-xl fw-900 text-brand">₹<%=total%></span></strong></td>
                                         </tr>
                                     </tbody>
                                 </table>
