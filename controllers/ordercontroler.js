@@ -80,7 +80,12 @@ module.exports = {
       const couponId = req.params.id;
       let data = req.body;
       let total = data.coupon_total;
-
+     console.log(req.body.billing_address,"adressaa");
+     if (!req.body.billing_address) {
+      console.log('address not found');
+      // If billing_address does not exist in req.body, handle the case here
+      return res.json({ error: "Billing address is missing" });
+    }
       // Check if coupon exists in the collection
       const coupon = await Coupon.findOne({ couponCode: couponId });
       // checking the coupon have been already used

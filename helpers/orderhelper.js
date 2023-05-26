@@ -341,7 +341,7 @@ module.exports = {
     },
     // verify payment of razorpay
     verifyPayment: (details) => {
-        console.log("suharaajoeeeeeeeeeeeee",details);
+        console.log("aa",details);
         try {
          
             return new Promise((resolve, reject) => {
