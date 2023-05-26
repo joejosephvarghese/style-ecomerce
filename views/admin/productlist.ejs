@@ -105,46 +105,52 @@
       </tr>
     </thead>
     <tbody>
-      <% for (let i=0; i < data.length; i++) { %>
+      <% for (let i = 0; i < data.length; i++) { %>
         <tr>
-
           <td>
             <a class="itemside" href="#">
               <div class="left">
-                <img src="<%= data[i].images.image1 %>" class="img-sm img-thumbnail" alt="Item">
+                <img src="<%= data[i]?.images?.image1 %>" class="img-sm img-thumbnail" alt="Item">
               </div>
               <div class="info">
-          <td class="mb-0">
-            <%= data[i].name %>
+                <td class="mb-0">
+                  <%= data[i]?.name %>
+                </td>
+              </div>
+            </a>
           </td>
-          </div>
-          </a>
-          </td>
-          <td><span>
-              <%= data[i].price %>
-            </span></td>
-          <td><span class="badge rounded-pill alert-success">
-              <%= data[i].category %>
-            </span></td>
-          <td><span>
-              <%= data[i].description %>
-            </span></td>
           <td>
-            <% if (data[i].status===true) { %>
-              <a href="/admin/editproduct/<%= data[i]._id %>" class="btn btn-sm font-sm rounded btn-brand">
+            <span>
+              <%= data[i]?.price %>
+            </span>
+          </td>
+          <td>
+            <span class="badge rounded-pill alert-success">
+              <%= data[i]?.category %>
+            </span>
+          </td>
+          <td>
+            <span>
+              <%= data[i]?.description %>
+            </span>
+          </td>
+          <td>
+            <% if (data[i]?.status === true) { %>
+              <a href="/admin/editproduct/<%= data[i]?._id %>" class="btn btn-sm font-sm rounded btn-brand">
                 <i class="material-icons md-edit"></i> Edit
               </a>
-              <a href="/admin/deleteproduct/<%= data[i]._id %>" class="btn btn-sm font-sm btn-light rounded">
+              <a href="/admin/deleteproduct/<%= data[i]?._id %>" class="btn btn-sm font-sm btn-light rounded">
                 <i class="material-icons md-delete_forever"></i> Unlist
               </a>
-              <% } else { %>
-                <a href="/admin/listproduct/<%= data[i]._id %>" class="btn btn-sm font-sm btn-light rounded">
-                  <i class="material-icons md-delete_forever"></i> List
-                </a>
-                <% } %>
+            <% } else { %>
+              <a href="/admin/listproduct/<%= data[i]?._id %>" class="btn btn-sm font-sm btn-light rounded">
+                <i class="material-icons md-delete_forever"></i> List
+              </a>
+            <% } %>
           </td>
         </tr>
-        <% } %>
+      <% } %>
+      
     </tbody>
   </table>
 
