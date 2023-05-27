@@ -355,7 +355,7 @@ module.exports = {
       }
 
       let report = await orderHelpers.getSalesReport();
-
+ 
       let details = [];
       const getDate = (date) => {
         let orderDate = new Date(date);

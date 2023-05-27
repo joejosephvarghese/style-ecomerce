@@ -35,7 +35,7 @@
                             <% for(let i=locals.order.length-1; i>=0; i--) { %>
                               <tr>
                                 <td><%= locals.order.length-i %></td>
-                                <td><span class=""><%=locals.order[i]._id%></span></td>
+                                <td><span class=""><%=locals.order[i].orders.hashedId%></span></td>
                                 <td>₹ <%=locals.order[i].orders.totalPrice %></td>
                                 <td><span class="badge rounded-pill alert-success"><%=locals.order[i].orders.paymentStatus%></span></td>
                                 <td><span class="badge rounded-pill alert-success"><%= locals.order[i].orders.paymentMethod %></span></td>

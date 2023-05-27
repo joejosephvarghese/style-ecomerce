@@ -30,7 +30,7 @@
     </div>
       
    
-  
+  <div id="container_content">
     <br>
     <div class="text">
       <h6 class="mb-1 card-title">Revenue</h6>
@@ -44,7 +44,7 @@
       <span class="text-sm"> Excluding orders in transit </span>
     </div>
   
-    <table class="table table-striped table-hover" id="container_content">
+    <table class="table table-striped table-hover" >
       <thead>
         <tr>
           <th scope="col">OrderId</th>
@@ -60,7 +60,7 @@
       <tbody>
           <% details.forEach((order)=>{ %>
         <tr>
-          <td><%=order._id%></td>
+          <td><%=order.hashedId%></td>
           <td><%=order.shippingAddress[0].item.fname%> <%=order.shippingAddress[0].item.lname %></td>
           <td><%=order.productDetails[0].productName%></td>
           <td><%=order.productDetails[0].quantity%></td>
@@ -80,7 +80,7 @@
   </div>
   <br>
   <br>
-  
+</div>
   
   </div>
   
